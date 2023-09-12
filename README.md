@@ -1,6 +1,12 @@
 # Bowditch Game Dev 2023
 In-class workshop repo for Game Dev 1
 
+Updated 2023.09.12
+--- 
+  * Finished player Input Action
+  * Started FirstPersonController.cs
+  * Enabled "Invoke Unity Events" and added three events for OnMove, OnLook, and OnJump methonds 
+
 Updated 2023.09.07
 ---
   * Added iPoly3D Prototype Texture Free Asset pack
