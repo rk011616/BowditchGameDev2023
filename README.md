@@ -1,6 +1,19 @@
 # Bowditch Game Dev 2023
 In-class workshop repo for Game Dev 1
 
+Updated 2023.09.26
+---
+  * Created Third Person proxy models
+  * Configured Follow Look Cinemachine Camera
+  * Started ThirdPersonController.sc
+  * Discussed reusability of Player Input Actions
+
+Updated 2023.09.21
+---
+  * Finished FirstPersonController.cs and modified default variable values
+  * Started Third Person Controller Project
+  * Added CineMachine Asset pack
+    
 Updated 2023.09.12
 --- 
   * Finished player Input Action
