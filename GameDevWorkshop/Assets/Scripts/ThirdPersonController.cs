@@ -25,8 +25,10 @@ public class ThirdPersonController : MonoBehaviour
     public float move_force; //Force applied to player
     public float rotation_speed; //How fast model rotates
     private Vector3 direction;
+    public float jump_force = 500f;
 
-
+    //Raycast Variables
+    private float ray_length = 1.1f;
 
 
 
@@ -41,18 +43,31 @@ public class ThirdPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        RotatePlayerModel();
+        Debug.DrawRay(transform.position, Vector3.down * ray_length, Color.blue);
+
+    }
+    private void FixedUpdate()
+    {
+        MovePlayer();
     }
 
     public void GetMovementInput(InputAction.CallbackContext context)
     {
 
         move_input = context.ReadValue<Vector2>();
+        Debug.Log(move_input);
 
     }
 
     public void GetJumpInput(InputAction.CallbackContext context)
     {
+        //When button or key is pressed, execute
+        if(context.phase == InputActionPhase.Started)
+        {
+            Jump();
+        }
+
 
     }
 
@@ -69,6 +84,36 @@ public class ThirdPersonController : MonoBehaviour
         direction = orientation.right * move_input.x + orientation.forward * move_input.y;
         direction = direction.normalized;
 
-        //Pick up at this point
+        //Keyboard input
+
+        if(move_input != Vector2.zero)
+        {
+            //Creates a new rotation that we want to player_model to look at
+            Quaternion new_rotation = Quaternion.LookRotation(direction, Vector3.up);
+
+            //Calcuated rotation, now we want the playe_model to move towards that rotation
+            player_model.rotation = Quaternion.Slerp(player_model.rotation, new_rotation, rotation_speed * Time.deltaTime);
+        }
+    }
+
+    public void MovePlayer()
+    {
+        rigidbody.AddForce(direction * move_force, ForceMode.Force);
+
+    }
+
+    public void Jump()
+    {
+        if (IsOnGround())
+        {
+
+            rigidbody.AddForce(Vector3.up * jump_force);
+        }
+    }
+
+    bool IsOnGround()
+    {
+        Ray ray = new Ray(transform.position, Vector3.down);
+        return Physics.Raycast(ray, ray_length);
     }
 }
