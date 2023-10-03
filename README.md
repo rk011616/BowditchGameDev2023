@@ -1,6 +1,11 @@
 # Bowditch Game Dev 2023
 In-class workshop repo for Game Dev 1
 
+Updated 2023.09.28
+---
+  * Finished Third Person Controller script (optimize in-class next session)
+  * Adjusted Cinemachine properties
+
 Updated 2023.09.26
 ---
   * Created Third Person proxy models
