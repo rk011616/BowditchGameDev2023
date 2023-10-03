@@ -5,6 +5,7 @@ Updated 2023.10.03
 ---
   * Modified Third Person Controller/made prefab
   * Started Terrain with imported splat maps and tree/bush (billboards)
+  * New level design scene
 
 Updated 2023.09.28
 ---
