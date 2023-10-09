@@ -1,6 +1,12 @@
 # Bowditch Game Dev 2023
 In-class workshop repo for Game Dev 1
 
+Updated 2023.10.05
+---
+  * Additional trees and bushes workflow
+  * Installed Probuilder
+  * Starting white boxing level using Probuilder
+
 Updated 2023.10.03
 ---
   * Modified Third Person Controller/made prefab
