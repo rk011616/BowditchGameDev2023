@@ -1,6 +1,12 @@
 # Bowditch Game Dev 2023
 In-class workshop repo for Game Dev 1
 
+Updated 2023.10.10
+---
+  * Created Skybox
+  * Baked lighting based on skybox data
+  * Started flashlight project - basic functionality working
+
 Updated 2023.10.05
 ---
   * Additional trees and bushes workflow
