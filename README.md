@@ -1,6 +1,13 @@
 # Bowditch Game Dev 2023
 In-class workshop repo for Game Dev 1
 
+
+Updated 2023.10.12
+---
+  * Finished flashlight script/project
+  * Added random color for flashlight on click
+  * Added Audio Source and applied random range of click sounde effect.
+
 Updated 2023.10.10
 ---
   * Created Skybox
