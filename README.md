@@ -1,6 +1,9 @@
 # Bowditch Game Dev 2023
 In-class workshop repo for Game Dev 1
 
+Updated 2023.10.17
+  * Configured WebGL Build Settings
+  * Fine tuned cameras, flashlights, etc.
 
 Updated 2023.10.12
 ---
