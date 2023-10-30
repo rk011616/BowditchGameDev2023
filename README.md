@@ -1,7 +1,14 @@
 # Bowditch Game Dev 2023
 In-class workshop repo for Game Dev 1
 
+Updated 2023.10.24
+---
+  * Started _Asteroids_ Project
+  * Setup scene, camera, and proxy spaceship
+  * Started a Ship Player Controller, created Input Action, and started Screen wrap function.
+
 Updated 2023.10.17
+---
   * Configured WebGL Build Settings
   * Fine tuned cameras, flashlights, etc.
 
