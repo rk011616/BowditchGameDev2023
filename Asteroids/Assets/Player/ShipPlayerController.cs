@@ -1,5 +1,6 @@
 //Ship Controller Script - bowditch 20231019
 
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,11 +21,20 @@ public class ShipPlayerController : MonoBehaviour
     public Camera camera;
     public Plane[] camera_frustum;
 
+    //Debug
+    public GameObject test_cube1;
+    public GameObject test_cube2;
+    public GameObject test_cube3;
+    public GameObject test_cube4;
+
     // Start is called before the first frame update
     void Start()
     {
         
         rigidbody = GetComponent<Rigidbody>();
+
+        //Get planes from camera frustum
+        camera_frustum = GeometryUtility.CalculateFrustumPlanes(camera);
 
     }
 
@@ -35,6 +45,8 @@ public class ShipPlayerController : MonoBehaviour
         RotatePlayer();
 
         MovePlayer();
+
+        ScreenWrap();
 
     }
 
@@ -60,6 +72,55 @@ public class ShipPlayerController : MonoBehaviour
 
     private void ScreenWrap()
     {
+        //Wrap Variables
+        float radius = 2;
+        Vector3 bottom_point = transform.position - new Vector3(0, 0, radius);
+        Vector3 top_point = transform.position + new Vector3(0, 0, radius);
+        Vector3 right_point = transform.position + new Vector3(radius, 0, 0);
+        Vector3 left_point = transform.position - new Vector3(radius, 0, 0);
+        float distance_to_camera;
 
+        //Debug Variables
+
+        test_cube1.transform.position = bottom_point;
+        test_cube2.transform.position = top_point;
+        test_cube3.transform.position = right_point;
+        test_cube4.transform.position = left_point;
+
+        //Top Plane
+        if (!camera_frustum[3].GetSide(bottom_point))
+        {
+            //Finding the distance the player is from camera
+            distance_to_camera = transform.position.z - camera.transform.position.z;
+            
+            //Positioning player based off distance
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - (distance_to_camera * 2) + 1f);
+        }
+
+        //Bottom Plane
+        if (!camera_frustum[2].GetSide(top_point))
+        {
+            //Finding the distance the player is from camera
+            distance_to_camera = camera.transform.position.z - transform.position.z;
+
+            //Positioning player based off distance
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (distance_to_camera * 2) - 1f);
+        }
+
+        //Left Plane
+        if (!camera_frustum[0].GetSide(right_point))
+        {
+            distance_to_camera = camera.transform.position.x - transform.position.x;
+
+            transform.position = new Vector3(transform.position.x + (distance_to_camera * 2) - 1f, transform.position.y, transform.position.z);
+        }
+
+        //Right Plane
+        if (!camera_frustum[1].GetSide(left_point))
+        {
+            distance_to_camera = transform.position.x - camera.transform.position.x;
+
+            transform.position = new Vector3(transform.position.x - (distance_to_camera * 2) + 1f, transform.position.y, transform.position.z);
+        }
     }
 }
