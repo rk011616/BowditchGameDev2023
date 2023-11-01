@@ -1,6 +1,11 @@
 # Bowditch Game Dev 2023
 In-class workshop repo for Game Dev 1
 
+Updated 2023.10.31
+---
+  * Finished _Asteroids_ Ship Controller
+  * Added plane detection and GeometryUtility
+
 Updated 2023.10.24
 ---
   * Started _Asteroids_ Project
@@ -10,13 +15,13 @@ Updated 2023.10.24
 Updated 2023.10.17
 ---
   * Configured WebGL Build Settings
-  * Fine tuned cameras, flashlights, etc.
+  * Fine-tuned cameras, flashlights, etc.
 
 Updated 2023.10.12
 ---
   * Finished flashlight script/project
   * Added random color for flashlight on click
-  * Added Audio Source and applied random range of click sounde effect.
+  * Added Audio Source and applied a random range of click sound effects.
 
 Updated 2023.10.10
 ---
@@ -58,14 +63,14 @@ Updated 2023.09.12
 --- 
   * Finished player Input Action
   * Started FirstPersonController.cs
-  * Enabled "Invoke Unity Events" and added three events for OnMove, OnLook, and OnJump methonds 
+  * Enabled "Invoke Unity Events" and added three events for OnMove, OnLook, and OnJump methods 
 
 Updated 2023.09.07
 ---
   * Added iPoly3D Prototype Texture Free Asset pack
   * Installed Input System
-  * Base ground and first person camera and asset
-  * Started creating first person Input Action
+  * Base ground and first-person camera and asset
+  * Started creating first-person Input Action
 
 Updated 2023.09.05
 ---
