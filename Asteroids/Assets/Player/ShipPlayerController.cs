@@ -3,6 +3,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +21,11 @@ public class ShipPlayerController : MonoBehaviour
     //Screen Wrap
     public Camera camera;
     public Plane[] camera_frustum;
+
+    //Shooting Variables
+    private bool is_shooting;
+    public GameObject bullet_prefab;
+    public Transform shoot_point;
 
     //Debug
     public GameObject test_cube1;
@@ -46,6 +52,8 @@ public class ShipPlayerController : MonoBehaviour
 
         MovePlayer();
 
+        Shoot(is_shooting, shoot_point);
+
         ScreenWrap();
 
     }
@@ -54,6 +62,16 @@ public class ShipPlayerController : MonoBehaviour
     {
         move_input = context.ReadValue<Vector2>();
 
+    }
+
+    public void GetShootInput(InputAction.CallbackContext context)
+    {
+        is_shooting = true;
+
+        if(context.phase == InputActionPhase.Canceled)
+        {
+            is_shooting = false;
+        }
     }
 
     private void MovePlayer()
@@ -121,6 +139,21 @@ public class ShipPlayerController : MonoBehaviour
             distance_to_camera = transform.position.x - camera.transform.position.x;
 
             transform.position = new Vector3(transform.position.x - (distance_to_camera * 2) + 1f, transform.position.y, transform.position.z);
+        }
+    }
+
+    private void Shoot(bool shooting, Transform bullet_spawn_point)
+    {
+
+        if (shooting)
+        {
+            GameObject bullet = Instantiate(bullet_prefab, bullet_spawn_point.position, Quaternion.identity);
+
+            bullet.transform.forward = transform.forward;
+
+            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 15, ForceMode.Impulse);
+
+            Destroy(bullet, 2.5f);
         }
     }
 }
