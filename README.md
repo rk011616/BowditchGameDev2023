@@ -1,6 +1,12 @@
 # Bowditch Game Dev 2023
 In-class workshop repo for Game Dev 1
 
+Updated 2023.11.02
+---
+  * Created Bullets
+  * Fired Bullets through Ship Controller
+  * Started bullet.cs to offload bullet functionality
+
 Updated 2023.10.31
 ---
   * Finished _Asteroids_ Ship Controller
