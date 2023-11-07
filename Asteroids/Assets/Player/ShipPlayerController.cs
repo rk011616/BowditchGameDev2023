@@ -25,13 +25,18 @@ public class ShipPlayerController : MonoBehaviour
     //Shooting Variables
     private bool is_shooting;
     public GameObject bullet_prefab;
-    public Transform shoot_point;
+    public Transform[] shoot_points;
+    public float rate_of_fire = 0.15f;
+    private float shoot_timer = 0.0f;
+    private int shoot_point_tracker = 0;
 
     //Debug
+    /*
     public GameObject test_cube1;
     public GameObject test_cube2;
     public GameObject test_cube3;
     public GameObject test_cube4;
+    */
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +57,7 @@ public class ShipPlayerController : MonoBehaviour
 
         MovePlayer();
 
-        Shoot(is_shooting, shoot_point);
+        Shoot(is_shooting, shoot_points);
 
         ScreenWrap();
 
@@ -99,11 +104,12 @@ public class ShipPlayerController : MonoBehaviour
         float distance_to_camera;
 
         //Debug Variables
-
+        /*
         test_cube1.transform.position = bottom_point;
         test_cube2.transform.position = top_point;
         test_cube3.transform.position = right_point;
         test_cube4.transform.position = left_point;
+        */
 
         //Top Plane
         if (!camera_frustum[3].GetSide(bottom_point))
@@ -142,18 +148,21 @@ public class ShipPlayerController : MonoBehaviour
         }
     }
 
-    private void Shoot(bool shooting, Transform bullet_spawn_point)
+    private void Shoot(bool shooting, Transform[] bullet_spawn_points)
     {
+       if(shoot_timer > 0) shoot_timer -= Time.deltaTime;
 
-        if (shooting)
+        if (shooting && shoot_timer <= 0)
         {
-            GameObject bullet = Instantiate(bullet_prefab, bullet_spawn_point.position, Quaternion.identity);
+            shoot_timer = rate_of_fire;
 
-            bullet.transform.forward = transform.forward;
+            GameObject bullet = Instantiate(bullet_prefab, bullet_spawn_points[shoot_point_tracker].position, Quaternion.identity);
 
-            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 15, ForceMode.Impulse);
+            bullet.GetComponent<Bullet>().OnShot(transform.forward);
 
-            Destroy(bullet, 2.5f);
+            shoot_point_tracker++;
+
+            if (shoot_point_tracker > shoot_points.Length - 1) shoot_point_tracker = 0;
         }
     }
 }

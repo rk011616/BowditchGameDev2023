@@ -26,6 +26,14 @@ public class Bullet : MonoBehaviour
     public void OnShot(Vector3 direction)
     {
         rigidbody = GetComponent<Rigidbody>();
+
+        transform.forward = direction;
+
+        rigidbody.AddForce(transform.forward * bullet_speed, ForceMode.Impulse);
+
+        Destroy(gameObject, life_time);
+
+
     }
     
 }
